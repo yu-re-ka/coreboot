@@ -15,11 +15,9 @@ config BOARD_SPECIFIC_OPTIONS
 	select SYSTEM_TYPE_LAPTOP
 
 config MAINBOARD_DIR
-	string
 	default "lenovo/t540p"
 
 config MAINBOARD_PART_NUMBER
-	string
 	default "ThinkPad T540p"
 
 config VGA_BIOS_FILE
