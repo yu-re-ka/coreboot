@@ -4,9 +4,27 @@
 #include <northbridge/intel/haswell/haswell.h>
 #include <northbridge/intel/haswell/raminit.h>
 #include <southbridge/intel/lynxpoint/pch.h>
+#include <option.h>
+#include <ec/lenovo/pmh7/pmh7.h>
+#include <device/pci_ops.h>
 
 void mainboard_config_rcba(void)
 {
+}
+
+void mb_late_romstage_setup(void)
+{
+	u8 enable_peg = get_uint_option("enable_dual_graphics", 0);
+
+	bool power_en = pmh7_dgpu_power_state();
+
+	if (enable_peg != power_en)
+		pmh7_dgpu_power_enable(!power_en);
+
+	if (!enable_peg) {
+		// Hide disabled dGPU device
+		pci_and_config32(HOST_BRIDGE, DEVEN, ~DEVEN_D1F0EN);
+	}
 }
 
 void mb_get_spd_map(struct spd_info *spdi)
