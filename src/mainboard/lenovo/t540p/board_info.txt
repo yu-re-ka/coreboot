@@ -3,5 +3,4 @@ Board URL: https://www.lenovo.com/us/en/laptops/thinkpad/t-series/t540p/
 ROM protocol: SPI
 ROM socketed: n
 Flashrom support: n
-FIXME: put ROM package, ROM socketed
 Release year: 2013
